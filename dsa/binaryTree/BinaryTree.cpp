@@ -24,6 +24,7 @@ void insertNode(Node* root,int data,int pos){
             return;
         }
         root->right = temp;
+        
     }
     else{
         if(root->left!=NULL){

@@ -1,6 +1,8 @@
 #include <iostream>
+
 using std::cout, std::endl;
 //implementing stack using array;
+
 
 class Stack
 {
