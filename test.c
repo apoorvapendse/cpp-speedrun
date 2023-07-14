@@ -1,13 +1,18 @@
 #include<stdio.h>
 #include<stdlib.h>
-int main(int argc, char const *argv[])
+int main()
 {
-    int* arr = (int*)malloc(sizeof(int)*12);
-    for (int i = 0; i < 12; i++)
-    {
-        scanf("%d",&arr[i]);
-        
-    }
+   int a = 12;
+   int b = 18;
+   char name[100];
+   printf("enter your name\n");
+   scanf("%s",name);
+
+   int age ;
+   printf("enter your age\n");
+   scanf("%d",&age);
+
+   printf("%s is %d years old\n",name,age);
     
 
     return 0;
