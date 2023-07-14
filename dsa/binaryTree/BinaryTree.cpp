@@ -15,37 +15,22 @@ class Node{
 
 };
 
-
-void printRightTree(Node* root){
-    //we will be having a copy of the root here;
-    cout<<&root;//a copy of root pointer is made, but this copy still points to the same data;S
-    root->data = 88;
-    while(root!=NULL){
-        cout<<root->data<<endl;
-        root=root->right;
-        
+void insertNode(Node* root,int data,int pos){
+    //0 means left, 1 means right
+    Node* temp = new Node(data);
+    if(pos==1){
+        if(root->right!=NULL){
+            cout<<"Right root already has a child"<<endl;
+            return;
+        }
+        root->right = temp;
     }
-}
-
-
-int main(){
-    Node* root = new Node(12);
-        /*   root
-            /  \
-        NULL    NULL */
-
-    root->left = new Node(14);
-    /*       12
-            /  \
-          14    NULL 
-         /  \    
-      null   null
-          */
-
-    root->right = new Node(16);
-    printRightTree(root);
-    cout<<&root;
-
-
+    else{
+        if(root->left!=NULL){
+            cout<<"Right root already has a child"<<endl;
+            return;
+        }
+        root->left = temp;
+    }
 
 }
