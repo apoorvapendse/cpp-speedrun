@@ -1,5 +1,7 @@
 #include <iostream>
-using std::cout, std::cin, std::endl,std::max;
+#include <climits>
+using namespace std;
+
 class Node
 {
 public:
@@ -80,6 +82,48 @@ int findLeafNodeCount(Node* root){
     int rightLeafNodes = findLeafNodeCount(root->right);
     return leftLeadNodes + rightLeafNodes;
 }
+
+int findMinNode(Node* root, int& minval) {
+    if (root == NULL) {
+        return INT_MAX; 
+    }
+    
+    int leftMin = findMinNode(root->left, minval);
+    
+    if (root->data < minval) {
+        minval = root->data;
+    }
+    
+    int rightMin = findMinNode(root->right, minval);
+    
+    return min(minval, min(leftMin, rightMin));
+}
+int findMaxNode(Node* root, int& maxval) {
+    if (root == NULL) {
+        return INT_MIN; // Return a large value to represent no maximum found
+    }
+    
+    int leftMax = findMaxNode(root->left, maxval);
+    
+    if (root->data > maxval) {
+        maxval = root->data;
+    }
+    
+    int rightMax = findMaxNode(root->right, maxval); // Corrected recursive call
+    
+    return max(maxval, max(leftMax, rightMax));
+}
+
+void printLeadNodes(Node* root){
+    if(!root){
+        return;
+    }
+    printLeadNodes(root->left);
+    printLeadNodes(root->right);
+    if(root->left==NULL && root->right ==NULL){
+        cout<<root->data<<" ";
+    }
+}
 int main()
 {
 
@@ -113,4 +157,16 @@ int main()
 
     int leafNodes = findLeafNodeCount(root);
     cout<<endl<<"total number of leaf nodes is:"<<leafNodes<<endl;
+
+
+    int minVal = INT_MAX;
+    int minNode = findMinNode(root,minVal);
+    cout<<endl<<"The value of the node with min value is:"<<minNode<<endl;
+    
+    
+   int maxval = INT_MIN;
+int maximum = findMaxNode(root, maxval);
+    cout<<endl<<"The value of the node with max value is:"<<maximum<<endl;
+
+    printLeadNodes(root);
 }
