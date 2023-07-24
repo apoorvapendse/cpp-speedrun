@@ -1,5 +1,6 @@
 #include <iostream>
 #include <climits>
+#include<queue>
 using namespace std;
 
 class Node
@@ -124,6 +125,28 @@ void printLeadNodes(Node* root){
         cout<<root->data<<" ";
     }
 }
+
+void printLevelWise(Node* root){
+    if(root==NULL){return;}
+    
+    queue<Node*> myQueue;
+    myQueue.push(root);
+    while(myQueue.empty()==false){
+        Node* temp = myQueue.front();
+        cout<<temp->data<<" ";
+        myQueue.pop();
+        if(temp->left){
+            myQueue.push(temp->left);
+        }
+        if(temp->right){
+            myQueue.push(temp->right);
+        }
+        
+    }
+    
+    
+
+}
 int main()
 {
 
@@ -164,9 +187,13 @@ int main()
     cout<<endl<<"The value of the node with min value is:"<<minNode<<endl;
     
     
-   int maxval = INT_MIN;
-int maximum = findMaxNode(root, maxval);
+    int maxval = INT_MIN;
+    int maximum = findMaxNode(root, maxval);
     cout<<endl<<"The value of the node with max value is:"<<maximum<<endl;
 
     printLeadNodes(root);
+
+    cout<<endl;
+    cout<<"Levelwise:"<<endl;
+    printLevelWise(root);
 }
